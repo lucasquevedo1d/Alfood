@@ -15,7 +15,7 @@ const NavBar = () => {
       </ul>
     </div>
     <div>
-      <p>Uma alegria <em>a cada prato</em></p>
+      <p>Uma alegria a cada prato</p>
     </div>
   </footer>)
 }

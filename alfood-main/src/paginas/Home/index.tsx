@@ -1,11 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Banner from '../../componentes/Banner';
 import NavBar from '../../componentes/NavBar';
 import Rodape from '../../componentes/Rodape';
+import { goToRestaurant } from '../../coordinator';
 import estilos from './Home.module.scss';
 
 function App() {
+  const navigate= useNavigate()
   return (
     <>
       <NavBar />
@@ -16,7 +18,7 @@ function App() {
           <h2>A melhor rede de restaurantes!</h2>
           <div>
             <p>seja um parceiro agora:</p>
-            <p>ligue para <a href="callto:99999999999">(99) 99999-999</a></p>
+            <p>ligue para <a href="callto:99999999999">(xx) xxxxxx-xxx</a></p>
           </div>
         </div>
         <img src="/imagens/cozinhar_02.jpg" alt="Um hambúrguer desconstruído" />
@@ -40,8 +42,8 @@ function App() {
         </div>
       </div>
       <div className={estilos.Links}>
-        <h3>Conheça os melhores restaurantes</h3>
-        <p>Clique <Link to='/restaurantes'>aqui</Link></p>
+        <h2>Conheça os melhores restaurantes</h2>
+        <button className={estilos.restaurantes}onClick={() => goToRestaurant(navigate)}>Restaurantes</button>
       </div>
       <Rodape />
     </>

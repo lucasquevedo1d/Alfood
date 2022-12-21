@@ -11,7 +11,7 @@ interface RestauranteProps {
 
 const Restaurante = ({ restaurante }: RestauranteProps) => {
   const [prato, setPratos] = useState<IPrato[]>()
-  const [prato2, setPrato2]= useState<IPrato[]>()
+
   const listaPratos = () =>{
     axios.get(`http://localhost:8000/api/v1/restaurantes/${restaurante.id}/pratos/`)
     .then((res) =>{

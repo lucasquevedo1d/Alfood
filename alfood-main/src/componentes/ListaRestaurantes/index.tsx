@@ -38,11 +38,11 @@ const [restaurantes2, setRestaurantes2] = useState("")
   },[])
 
   return (<section className={style.ListaRestaurantes}>
-    <h1>Os restaurantes mais <em>bacanas</em>!</h1>
+    <h1>Os restaurantes mais bacanas!</h1>
     {restaurantes?.map(item => <Restaurante restaurante={item} key={item.id} />)}
-    {restaurantes2? <button onClick={verMais}>
+    {restaurantes2? <button className={style.botaoVer} onClick={verMais}>
       Ver mais
-      </button>: <button onClick={lista}>Ver menos</button>}
+      </button>: <button className={style.botaoVer} onClick={lista}>Ver menos</button>}
   </section>)
 }
 
