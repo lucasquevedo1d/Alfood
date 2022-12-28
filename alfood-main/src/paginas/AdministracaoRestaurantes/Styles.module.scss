@@ -1,0 +1,19 @@
+.editar {
+    cursor: pointer;
+    :hover{
+        color:red;
+        transition: 0.7s;
+    }
+    }
+
+.excluir{
+    color: red;
+    background-color: white;
+    cursor: pointer;
+    :hover{
+        background-color: red;
+        color: aliceblue;
+        transition: 0.7s;
+
+    }
+}
