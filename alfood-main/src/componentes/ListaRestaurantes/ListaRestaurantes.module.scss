@@ -21,8 +21,33 @@
   font-family: 'Bebas Neue', cursive;
   font-size:large;
   width: 250px;
-  margin-left: 595px;
+  // margin-left: 595px;
   margin-top: 20px;
+  &:hover {
+      color: #000;
+      background: #fff;
+      border-color: black;
+      transition: 0.6s;
+  }
+}
+
+.botaoBuscar {
+  border-radius: 28px;
+  color: #FFF;
+  display: inline-block;
+  background: #f2745f;
+  // padding: 10px 20px;
+  text-decoration: none;
+  font-weight: 200;
+  border-color: #f2745f;
+  cursor: pointer;
+  text-transform: uppercase;
+  border-style: solid;
+  font-family: 'Bebas Neue', cursive;
+  font-size:large;
+  width: 80px;
+  margin-left: 20px;
+  margin-top: 5px;
   &:hover {
       color: #000;
       background: #fff;

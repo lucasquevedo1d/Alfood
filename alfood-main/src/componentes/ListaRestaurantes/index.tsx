@@ -54,10 +54,10 @@ console.log(busca)
   return (<section className={style.ListaRestaurantes}>
     <h1>Os restaurantes mais bacanas!</h1>
     <form onSubmit={buscarRestaurantes}>
-    <TextField variant='standard' value={busca}
+    <TextField variant='standard' color='warning' value={busca}
      onChange={(event) => {setBusca(event.target.value)}} 
      placeholder="Buscar restaurante"/>
-    <Button type='submit' fullWidth>Buscar</Button>
+    <button type='submit' className={style.botaoBuscar}>Buscar</button>
     </form>
     {restaurantes?.map(item => <Restaurante restaurante={item} key={item.id} />)}
     {verMais? <button className={style.botaoVer} onClick={() => lista(verMais)} disabled={!verMais}>
