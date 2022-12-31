@@ -10,6 +10,8 @@ interface RestauranteProps {
   restaurante: IRestaurante
 }
 
+
+
 const Restaurante = ({ restaurante }: RestauranteProps) => {
   const [prato, setPratos] = useState<IPrato[]>()
 

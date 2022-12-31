@@ -10,3 +10,7 @@ export const goToAdminPagina = (navigate:any) =>{
 export const goToEdit = (navigate:any, id:any) =>{
     navigate(`/admin/restaurantes/${id}`)
 }
+
+export const goToNovoRestaurante = (navigate:any) =>{
+    navigate("/admin/novoRestaurante")
+}

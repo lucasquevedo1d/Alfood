@@ -6,6 +6,7 @@ import { BaseUrl } from '../../constants/BaseUrl';
 import { goToAdminPagina } from '../../coordinator';
 import { useNavigate, useParams } from 'react-router-dom';
 import IRestaurante from '../../interfaces/IRestaurante';
+import { Box, Typography } from '@mui/material';
 
 
 
@@ -63,29 +64,39 @@ const [nomeRestaurante, setNomeRestaurante] = useState("")
        }
        
         
-  return (<form onSubmit={onSubmitForm}>
+  return (
+    <Box sx={{display:'flex', flexDirection:"column", alignItems:"center", marginTop:'50px'}}>
+        <Typography component='h1' variant='h4' sx={{padding:"10px"}}>Nome do restaurante</Typography>
+  <Box component={'form'} onSubmit={onSubmitForm}>
 <TextField 
 id="standard-basic" 
 label="Nome do restaurante" 
 variant="standard" 
 value={nomeRestaurante}
 onChange={onchangeName}
+fullWidth
 />  
 <Button 
-variant="outlined"
+variant="contained"
 type="submit"
+fullWidth
+sx={{marginTop:"10px"}} 
+
 >
 salvar
 </Button>
 
-<Button 
+<Button
+sx={{marginTop:"10px"}} 
 variant="outlined"
 type="submit"
 onClick={() =>goToAdminPagina(navigate)}
+fullWidth
 >
 Voltar
 </Button>
-</form>
+</Box>
+    </Box>
   )
 }
 

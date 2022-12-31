@@ -7,13 +7,11 @@
     }
 
 .excluir{
-    color: red;
-    background-color: white;
     cursor: pointer;
     :hover{
-        background-color: red;
-        color: aliceblue;
+        color: black;
         transition: 0.7s;
+        transform: scale(1.1);
 
     }
 }

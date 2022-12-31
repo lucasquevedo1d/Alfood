@@ -11,7 +11,7 @@ import { BaseUrl } from '../../constants/BaseUrl'
 import IRestaurante from '../../interfaces/IRestaurante'
 import EditIcon from '@mui/icons-material/Edit';
 import { Link, useNavigate } from 'react-router-dom'
-import { goToEdit } from '../../coordinator'
+import { goToAdminPagina, goToEdit, goToNovoRestaurante, goToRestaurant } from '../../coordinator'
 import styles from "./Styles.module.scss"
 const AdministraçaoRestaurantes = () => {
     const navigate = useNavigate()
@@ -52,6 +52,12 @@ const AdministraçaoRestaurantes = () => {
                         <TableCell>
                            <h1>Nome do Restaurante</h1> 
                         </TableCell>
+                        <TableCell>
+                            <Button  color="info" variant='contained' onClick={() => goToNovoRestaurante(navigate) }>Adicionar Restaurante</Button>
+                        </TableCell>
+                        <TableCell>
+                            <Button  color="info" variant='contained' onClick={() => goToRestaurant(navigate) }>Voltar</Button>
+                        </TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -63,7 +69,7 @@ const AdministraçaoRestaurantes = () => {
                             {<EditIcon onClick={() => goToEdit(navigate,restaurante.id)}></EditIcon>}
                         </TableCell>
                         <TableCell className={styles.excluir} >
-                            {<Button color='inherit' variant='text' onClick={() => deletar(restaurante)}>Deletar</Button>}
+                            {<Button variant='contained' color='error' onClick={() => deletar(restaurante)}>Deletar</Button>}
                         </TableCell>
                     </TableRow>)}
 
