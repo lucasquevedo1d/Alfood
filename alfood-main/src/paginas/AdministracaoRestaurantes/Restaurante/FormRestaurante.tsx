@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import axios from 'axios';
-import { BaseUrl } from '../../constants/BaseUrl';
-import { goToAdminPagina } from '../../coordinator';
+import { BaseUrl } from '../../../constants/BaseUrl';
+import { goToAdminPagina } from '../../../coordinator';
 import { useNavigate, useParams } from 'react-router-dom';
-import IRestaurante from '../../interfaces/IRestaurante';
+import IRestaurante from '../../../interfaces/IRestaurante';
 import { Box, Paper, Typography } from '@mui/material';
 import { Container } from '@mui/system';
 
@@ -33,7 +33,7 @@ const FormRestaurante = () => {
         setNomeRestaurante(event.target.value)
     }
 
-    const onSubmitForm = (event: any) => {
+    const onSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
         const body = {

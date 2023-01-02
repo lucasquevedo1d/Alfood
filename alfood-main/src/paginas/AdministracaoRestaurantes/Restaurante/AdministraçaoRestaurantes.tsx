@@ -7,12 +7,12 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
-import { BaseUrl } from '../../constants/BaseUrl'
-import IRestaurante from '../../interfaces/IRestaurante'
+import { BaseUrl } from '../../../constants/BaseUrl'
+import IRestaurante from '../../../interfaces/IRestaurante'
 import EditIcon from '@mui/icons-material/Edit';
 import { Link, useNavigate } from 'react-router-dom'
-import { goToEdit, goToNovoRestaurante, goToRestaurant } from '../../coordinator'
-import styles from "./Styles.module.scss"
+import { goToEdit, goToNovoRestaurante, goToRestaurant } from '../../../coordinator'
+import styles from "../Styles.module.scss"
 const AdministraçaoRestaurantes = () => {
     const navigate = useNavigate()
     const [restaurante, setRestaurante] = useState<IRestaurante[]>([])
