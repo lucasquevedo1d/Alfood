@@ -54,7 +54,7 @@ const FormRestaurante = () => {
         } else {
             axios.post(`${BaseUrl}v2/restaurantes/`, body)
                 .then((res) => {
-                    alert("Restaurante cadastraddo com sucesso!")
+                    alert("Restaurante cadastrado com sucesso!")
                     console.log(res)
                 })
 

@@ -23,3 +23,8 @@ export const goToNovoPrato = (navigate:NavigateFunction) =>{
 export const goToEditarPrato = (navigate:NavigateFunction, id:number) =>{
     navigate(`/admin/prato/${id}`)
 }
+
+export const goToPratos = (navigate:NavigateFunction) =>{
+    navigate(`/admin/pratos/`)
+}
+

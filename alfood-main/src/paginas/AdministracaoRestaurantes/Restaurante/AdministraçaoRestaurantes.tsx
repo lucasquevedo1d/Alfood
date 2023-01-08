@@ -5,6 +5,7 @@ import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
+import DeleteIcon from '@mui/icons-material/Delete';
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { BaseUrl } from '../../../constants/BaseUrl'
@@ -63,13 +64,13 @@ const AdministraçaoRestaurantes = () => {
                 <TableBody>
                     {restaurante.map(restaurante => <TableRow key={restaurante.id}>
                         <TableCell>
-                           <h2>{restaurante.nome}</h2> 
+                           <p>{restaurante.nome}</p> 
                         </TableCell>
                         <TableCell className={styles.editar} >
                             {<EditIcon onClick={() => goToEdit(navigate,restaurante.id)}></EditIcon>}
                         </TableCell>
                         <TableCell className={styles.excluir} >
-                            {<Button variant='contained' color='error' onClick={() => deletar(restaurante)}>Deletar</Button>}
+                            {<DeleteIcon onClick={() => deletar(restaurante)}/>}
                         </TableCell>
                     </TableRow>)}
 

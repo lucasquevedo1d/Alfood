@@ -3,12 +3,13 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import axios from 'axios';
 import { BaseUrl } from '../../../constants/BaseUrl';
-import { goToAdminPagina } from '../../../coordinator';
+import { goToPratos } from '../../../coordinator';
 import { useNavigate, useParams } from 'react-router-dom';
 import IRestaurante from '../../../interfaces/IRestaurante';
 import { Box, FormControl, InputLabel, MenuItem, Paper, Select, Typography } from '@mui/material';
 import { Container } from '@mui/system';
 import ITag from '../../../interfaces/ITag';
+import IPrato from '../../../interfaces/IPrato';
 
 
 
@@ -22,45 +23,97 @@ const FormPrato = () => {
     const [restaurantes, setRestaurantes] = useState("")
     const [file, setFile] = useState<File | null>(null)
 
-    const getTags = () =>{
+    const params = useParams()
+    const getTags = () => {
         axios.get(`${BaseUrl}v2/tags/`)
-        .then((res) =>{
-            setTag(res.data.tags)
-            console.log(res.data.tags)
-        })
-        .catch((err) =>{
-            console.log(err)
-        })
+            .then((res) => {
+                setTag(res.data.tags)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     }
 
 
-    const getRestaurantes = () =>{
+    const getRestaurantes = () => {
         axios.get(`${BaseUrl}v2/restaurantes/`)
-        .then((res) =>{
-            setRestaurante(res.data)
-            console.log(res)
-        })
-        .catch((err) =>{
-            console.log(err)
-        })
+            .then((res) => {
+                setRestaurante(res.data)
+
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     }
-
-
-    const OnchangeFile = (e:React.ChangeEvent<HTMLInputElement>) =>{
-        if(e.target.files?.length){
-            setFile(e.target.files[0])
-        }else{
-           setFile(null)
+    const getPratos = () => {
+    if(params.id){
+            axios.get(`${BaseUrl}v2/pratos/${params.id}/`)
+                .then(res => console.log(res))
         }
     }
 
-   useEffect(() =>{
-   getTags()
-   getRestaurantes()
-   },[])
+   
+
+
+    const OnchangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files?.length) {
+            setFile(e.target.files[0])
+         } else {
+            setFile(null)
+        }
+    }
+
+
+    useEffect(() => {
+        getPratos()
+        getTags()
+        getRestaurantes()
+    }, [params])
     const onSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
+
+        const formData = new FormData()
+        formData.append('nome', nomePrato)
+        formData.append('descricao', descricao)
+        formData.append('tag', tags)
+        formData.append('restaurante', restaurantes)
+       
+        if(file){
+            formData.append('imagen', file)
+        }
+        if (params.id) {
+            axios.request({
+                url:`${BaseUrl}v2/pratos/${params.id}`,
+                method:'PUT',
+                headers:{
+                    'Content-Type':'multipart/form-data'
+                },
+                data: formData
+            })
+        }else{
+            axios.request({
+                url:`${BaseUrl}v2/pratos/`,
+                method:'POST',
+                headers:{
+                    'Content-Type':'multipart/form-data'
+                },
+                data: formData
+            })
+
+            .then((res) => {
+                alert("Prato Cadastrado com sucesso")
+                setDescricao("")
+                setNomePrato("")
+                setRestaurantes("")
+                setTags("")
+                console.log(res)
+            })
+
+            .catch(err => console.log(err))
     }
+        }
+               
+    
 
     return (
         <Container maxWidth="lg" sx={{ mt: 3 }}>
@@ -76,13 +129,13 @@ const FormPrato = () => {
                             onChange={e => setNomePrato(e.target.value)}
                             fullWidth
                         />
-                        <TextField 
-                        id="standard-basic"
-                        label="Descrição"
-                        variant="standard"
-                        value={descricao}
-                        onChange={e => setDescricao(e.target.value)}
-                        fullWidth
+                        <TextField
+                            id="standard-basic"
+                            label="Descrição"
+                            variant="standard"
+                            value={descricao}
+                            onChange={e => setDescricao(e.target.value)}
+                            fullWidth
                         >
                             Descrição
                         </TextField>
@@ -90,9 +143,9 @@ const FormPrato = () => {
                             <InputLabel id='select-id'>Tag</InputLabel>
                             <Select id='select-id' variant="standard" value={tags} onChange={e => setTags(e.target.value)}>
                                 {tag.map(index =>
-                                    <MenuItem key={index.id} value={index.id}
+                                    <MenuItem key={index.id} value={index.value}
                                     >
-                                    {index.value}
+                                        {index.value}
                                     </MenuItem>)}
                             </Select>
                         </FormControl>
@@ -103,11 +156,11 @@ const FormPrato = () => {
                                 {restaurante.map(index =>
                                     <MenuItem key={index.id} value={index.id}
                                     >
-                                    {index.nome}
+                                        {index.nome}
                                     </MenuItem>)}
                             </Select>
                         </FormControl>
-                        <input type={'file'} onChange={OnchangeFile}/>
+                        <input type={'file'} onChange={OnchangeFile} />
                         <Button
                             variant="contained"
                             type="submit"
@@ -118,10 +171,10 @@ const FormPrato = () => {
                         </Button>
 
                         <Button
-                            sx={{ marginTop: "10px", marginBottom:"20px" }}
+                            sx={{ marginTop: "10px", marginBottom: "20px" }}
                             variant="outlined"
                             type="submit"
-                            onClick={() => goToAdminPagina(navigate)}
+                            onClick={() => goToPratos(navigate)}
                             fullWidth
                         >
                             Voltar

@@ -3,13 +3,15 @@
     :hover{
         color:red;
         transition: 0.7s;
+        transform: scale(1.1);
+
     }
     }
 
 .excluir{
     cursor: pointer;
     :hover{
-        color: black;
+        color: red;
         transition: 0.7s;
         transform: scale(1.1);
 

@@ -5,18 +5,20 @@ import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
+import DeleteIcon from '@mui/icons-material/Delete';
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { BaseUrl } from '../../../constants/BaseUrl'
 import EditIcon from '@mui/icons-material/Edit';
-import { useNavigate } from 'react-router-dom'
-import { goToEdit, goToEditarPrato, goToNovoPrato, goToRestaurant } from '../../../coordinator'
+import { useNavigate, useParams } from 'react-router-dom'
+import { goToEditarPrato, goToNovoPrato, goToRestaurant } from '../../../coordinator'
 import styles from "../Styles.module.scss"
 import IPrato from '../../../interfaces/IPrato'
 const Pratos = () => {
     const navigate = useNavigate()
     const [pratos, setPratos] = useState<IPrato[]>([])
 
+    const params = useParams()
     const tabelaPratos = () => {
         axios.get<IPrato[]>(`${BaseUrl}v2/pratos/`)
             .then((res) => {
@@ -28,10 +30,10 @@ const Pratos = () => {
             })
     }
 
-    const deletar = (restaurantes:IPrato) =>{
-        axios.delete(`${BaseUrl}v2/pratos/${restaurantes.id}/`)
+    const deletar = (prato:IPrato) =>{
+        axios.delete(`${BaseUrl}v2/pratos/${prato.id}/`)
         .then((res) =>{
-            const listaPratos = pratos.filter(res => res.id !== restaurantes.id)
+            const listaPratos = pratos.filter(res => res.id !== prato.id)
             setPratos([...listaPratos])
             console.log(res)
         })
@@ -41,8 +43,10 @@ const Pratos = () => {
         })
     }
 
+
     useEffect(() => {
         tabelaPratos()
+
     }, [])
     return (
         <TableContainer component={Paper}>
@@ -69,10 +73,10 @@ const Pratos = () => {
                 <TableBody>
                     {pratos.map(prato => <TableRow key={prato.id}>
                         <TableCell>
-                           <h2>{prato.nome}</h2> 
+                           <p>{prato.nome}</p> 
                         </TableCell>
                         <TableCell>
-                           <h2>{prato.tag}</h2> 
+                           <p>{prato.tag}</p> 
                         </TableCell>
                         <TableCell>
                            <a href={prato.imagem} target="_blank">Ver imagem</a> 
@@ -81,7 +85,7 @@ const Pratos = () => {
                             {<EditIcon onClick={() => goToEditarPrato(navigate,prato.id)}></EditIcon>}
                         </TableCell>
                         <TableCell className={styles.excluir} >
-                            {<Button variant='contained' color='error' onClick={() => deletar(prato)}>Deletar</Button>}
+                            {<DeleteIcon onClick={() => deletar(prato)}/>}
                         </TableCell>
                     </TableRow>)}
 
