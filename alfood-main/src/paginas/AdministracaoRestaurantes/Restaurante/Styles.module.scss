@@ -1,0 +1,44 @@
+.botao {
+    border-radius: 28px;
+    color: #FFF;
+    display: inline-block;
+    background: #f2745f;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: 500;
+    border-color: #f2745f;
+    cursor: pointer;
+    text-transform: uppercase;
+    border-style: solid;
+    font-family: 'Bebas Neue', cursive;
+    font-size:large;
+    width: 100px;
+    // margin-left: 595px;
+    margin-top: 20px;
+    &:hover {
+        color: #000;
+        background: #fff;
+        border-color: black;
+        transition: 0.6s;
+    }
+  }
+
+  .editar {
+    cursor: pointer;
+    :hover{
+        color:#f2745f;
+        transition: 0.7s;
+        transform: scale(1.1);
+
+    }
+    }
+
+.excluir{
+    cursor: pointer;
+    :hover{
+        color: #f2745f;
+        transition: 0.7s;
+        transform: scale(1.1);
+
+    }
+}

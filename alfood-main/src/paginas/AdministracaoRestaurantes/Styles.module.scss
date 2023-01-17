@@ -17,3 +17,70 @@
 
     }
 }
+
+.containerAdmPage{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 99px;
+    max-width: 300px;
+}
+
+
+
+.botao1 {
+    border-radius: 28px;
+    color: #FFF;
+    display: inline-block;
+    background: #f2745f;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: 500;
+    border-color: #f2745f;
+    cursor: pointer;
+    text-transform: uppercase;
+    border-style: solid;
+    font-family: 'Bebas Neue', cursive;
+    font-size:large;
+    width: 125px;
+    margin-top: 20px;
+    margin-left: 500px;
+    // margin: auto;
+    &:hover {
+        color: #000;
+        background: #fff;
+        border-color: black;
+        transition: 0.6s;
+    }
+  }
+
+  .botao2 {
+    border-radius: 28px;
+    color: #FFF;
+    display: inline-block;
+    background: #f2745f;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: 500;
+    border-color: #f2745f;
+    cursor: pointer;
+    text-transform: uppercase;
+    border-style: solid;
+    font-family: 'Bebas Neue', cursive;
+    font-size:large;
+    width: 125px;
+    margin-top: 20px;
+    // margin: auto;
+    margin-left: 270px;
+
+
+    &:hover {
+        color: #000;
+        background: #fff;
+        border-color: black;
+        transition: 0.6s;
+    }
+  }
+
+
+

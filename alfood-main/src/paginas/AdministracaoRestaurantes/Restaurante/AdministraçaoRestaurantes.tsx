@@ -1,4 +1,4 @@
-import { Button, TableContainer } from '@mui/material'
+import { Box, Button, Container, TableContainer, Typography } from '@mui/material'
 import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -13,7 +13,7 @@ import IRestaurante from '../../../interfaces/IRestaurante'
 import EditIcon from '@mui/icons-material/Edit';
 import { Link, useNavigate } from 'react-router-dom'
 import { goToEdit, goToNovoRestaurante, goToRestaurant } from '../../../coordinator'
-import styles from "../Styles.module.scss"
+import styles from "./Styles.module.scss"
 const AdministraçaoRestaurantes = () => {
     const navigate = useNavigate()
     const [restaurante, setRestaurante] = useState<IRestaurante[]>([])
@@ -46,6 +46,11 @@ const AdministraçaoRestaurantes = () => {
         tabelaRestaurante()
     }, [])
     return (
+        <Container maxWidth="lg"  sx={{ mt: 3 }}>
+        <Paper sx={{ p: 1 }}>
+            <Box sx={{ display: 'flex', flexDirection: "column", alignItems: "center", marginTop: '50px',  }}>
+            <Typography component='h1' variant='h2' sx={{ padding: "10px", marginLeft:"-40px", backgroundColor:"primary" }}>Restaurantes</Typography>
+
         <TableContainer component={Paper}>
             <Table>
                 <TableHead>
@@ -54,10 +59,10 @@ const AdministraçaoRestaurantes = () => {
                            <h2>Nome</h2> 
                         </TableCell>
                         <TableCell>
-                            <Button  color="info" variant='contained' onClick={() => goToNovoRestaurante(navigate) }>Adicionar</Button>
+                        <button className={styles.botao} onClick={() => goToNovoRestaurante(navigate) }>Adicionar</button>
                         </TableCell>
                         <TableCell>
-                            <Button  color="info" variant='contained' onClick={() => goToRestaurant(navigate) }>Voltar</Button>
+                            <button className={styles.botao} onClick={() => goToRestaurant(navigate) }>Voltar</button>
                         </TableCell>
                     </TableRow>
                 </TableHead>
@@ -77,6 +82,9 @@ const AdministraçaoRestaurantes = () => {
                 </TableBody>
             </Table>
         </TableContainer>
+        </Box>
+        </Paper>
+        </Container>
     )
 }
 

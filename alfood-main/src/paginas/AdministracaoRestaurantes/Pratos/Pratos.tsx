@@ -1,4 +1,4 @@
-import { Button, TableContainer } from '@mui/material'
+import { Box, Button, Container, TableContainer, Typography } from '@mui/material'
 import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -12,7 +12,7 @@ import { BaseUrl } from '../../../constants/BaseUrl'
 import EditIcon from '@mui/icons-material/Edit';
 import { useNavigate, useParams } from 'react-router-dom'
 import { goToEditarPrato, goToNovoPrato, goToRestaurant } from '../../../coordinator'
-import styles from "../Styles.module.scss"
+import styles from "./Styles.module.scss"
 import IPrato from '../../../interfaces/IPrato'
 const Pratos = () => {
     const navigate = useNavigate()
@@ -49,24 +49,29 @@ const Pratos = () => {
 
     }, [])
     return (
+        <Container maxWidth="lg"  sx={{ mt: 3 }}>
+        <Paper sx={{ p: 1 }}>
+            <Box sx={{ display: 'flex', flexDirection: "column", alignItems: "center", marginTop: '50px',  }}>
+            <Typography component='h1' variant='h2' sx={{ padding: "10px", marginLeft:"-40px", backgroundColor:"primary" }}>Pratos</Typography>
+
         <TableContainer component={Paper}>
             <Table>
                 <TableHead>
                     <TableRow>
                         <TableCell>
-                           <h2>Nome</h2> 
+                           <h4>Nome</h4> 
                         </TableCell>
                         <TableCell>
-                           <h2>Tag</h2> 
+                           <h4>Tag</h4> 
                         </TableCell>
                         <TableCell>
-                           <h2>Imagem</h2> 
+                           <h4>Imagem</h4> 
                         </TableCell>
                         <TableCell>
-                            <Button  color="info" variant='contained' onClick={() => goToNovoPrato(navigate) }>Adicionar</Button>
+                            <button className={styles.botao} onClick={() => goToNovoPrato(navigate) }>Adicionar</button>    
                         </TableCell>
                         <TableCell>
-                            <Button  color="info" variant='contained' onClick={() => goToRestaurant(navigate) }>Voltar</Button>
+                            <button className={styles.botao} onClick={() => goToRestaurant(navigate) }>Voltar</button>
                         </TableCell>
                     </TableRow>
                 </TableHead>
@@ -92,6 +97,9 @@ const Pratos = () => {
                 </TableBody>
             </Table>
         </TableContainer>
+        </Box>
+        </Paper>
+        </Container>
     )
 }
 

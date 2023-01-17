@@ -22,7 +22,7 @@ const FormPrato = () => {
     const [restaurante, setRestaurante] = useState<IRestaurante[]>([])
     const [restaurantes, setRestaurantes] = useState("")
     const [file, setFile] = useState<File | null>(null)
-
+    console.log(file)
     const params = useParams()
     const getTags = () => {
         axios.get(`${BaseUrl}v2/tags/`)
@@ -45,12 +45,6 @@ const FormPrato = () => {
                 console.log(err)
             })
     }
-    const getPratos = () => {
-    if(params.id){
-            axios.get(`${BaseUrl}v2/pratos/${params.id}/`)
-                .then(res => console.log(res))
-        }
-    }
 
    
 
@@ -65,7 +59,6 @@ const FormPrato = () => {
 
 
     useEffect(() => {
-        getPratos()
         getTags()
         getRestaurantes()
     }, [params])
@@ -79,18 +72,32 @@ const FormPrato = () => {
         formData.append('restaurante', restaurantes)
        
         if(file){
-            formData.append('imagen', file)
+            formData.append('imagem', file)
         }
-        if (params.id) {
-            axios.request({
-                url:`${BaseUrl}v2/pratos/${params.id}`,
-                method:'PUT',
-                headers:{
-                    'Content-Type':'multipart/form-data'
-                },
-                data: formData
-            })
-        }else{
+        // if (params.id) {
+        //     axios.request({
+        //         url:`http://localhost:8000/api/v2/pratos/${params.id}`,
+        //         method:'PUT',
+        //         headers:{
+        //      'Content-Type':'multipart/form-data'
+        //         },
+        //         data: formData
+        //     })
+
+            // .then((res) => {
+            //     alert("Prato alterado com sucesso")
+            //     setDescricao("")
+            //     setNomePrato("")
+            //     setRestaurantes("")
+            //     setTags("")
+            //     console.log(res)
+            // })
+
+            // .catch((err) =>{
+            //     console.log(err)
+            // })
+
+        // }else{
             axios.request({
                 url:`${BaseUrl}v2/pratos/`,
                 method:'POST',
@@ -111,7 +118,7 @@ const FormPrato = () => {
 
             .catch(err => console.log(err))
     }
-        }
+        
                
     
 
